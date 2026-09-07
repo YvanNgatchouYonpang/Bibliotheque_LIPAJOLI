@@ -5,15 +5,37 @@ using Bibliotheques.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 var builder=WebApplication.CreateBuilder(args);
+
 builder.Services.AddControllers();
+
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c=>c.SwaggerDoc("v1",new OpenApiInfo {Title="Bibliothèques LIPAJOLI API",Version="v1",Description="API de gestion des emprunts de la bibliothèque LIPAJOLI."}));
+
+builder.Services.AddSwaggerGen(c=>c.SwaggerDoc("v1",new OpenApiInfo 
+{Title="Bibliothèques LIPAJOLI API",Version="v1",
+    Description="API de gestion des emprunts de la bibliothèque LIPAJOLI."}));
 builder.Services.AddDbContext<BibliothequeDbContext>(o=>o.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 builder.Services.AddScoped<IEmpruntRepository,EmpruntRepository>();
+
 builder.Services.AddScoped<ILivreRepository,LivreRepository>();
+
 builder.Services.AddScoped<IUsagerRepository,UsagerRepository>();
+
 builder.Services.AddScoped<IEmpruntService>(sp=>new EmpruntService(sp.GetRequiredService<IEmpruntRepository>(),sp.GetRequiredService<ILivreRepository>(),sp.GetRequiredService<IUsagerRepository>(),builder.Configuration.GetValue<int>("BorrowingSettings:BorrowingDays",10)));
-var app=builder.Build();
-app.UseSwagger(); app.UseSwaggerUI();
-app.UseHttpsRedirection(); app.MapControllers();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
 app.Run();
