@@ -1,3 +1,20 @@
 @model LIPAJOLI.ViewModels.EmpruntViewModel
-@{ViewData["Title"]="Détails de l'emprunt";}
-<h1>Détails de l'emprunt</h1><dl class="row"><dt class="col-sm-3">Emprunteur</dt><dd class="col-sm-9">@Model.Usager (@Model.NoAbonne)</dd><dt class="col-sm-3">Livre</dt><dd class="col-sm-9">@Model.Livre</dd><dt class="col-sm-3">Date d'emprunt</dt><dd class="col-sm-9">@Model.DateEmprunt.ToString("dd/MM/yyyy HH:mm")</dd><dt class="col-sm-3">Date limite</dt><dd class="col-sm-9">@Model.DateLimiteRetour.ToString("dd/MM/yyyy")</dd><dt class="col-sm-3">Date de retour</dt><dd class="col-sm-9">@(Model.DateRetour?.ToString("dd/MM/yyyy HH:mm") ?? "En cours")</dd><dt class="col-sm-3">Exemplaire</dt><dd class="col-sm-9">@(Model.ExemplaireId?.ToString() ?? "Non attribué")</dd></dl><a asp-action="Index">Retour</a>
+@{
+    ViewData["Title"]="Détails de l'emprunt";
+}
+<h1>Détails de l'emprunt</h1>
+
+<dl class="row"><dt class="col-sm-3">Emprunteur</dt>
+    <dd class="col-sm-9">@Model.Usager (@Model.NoAbonne)</dd>
+    <dt class="col-sm-3">Livre</dt>
+    <dd class="col-sm-9">@Model.Livre</dd>
+    <dt class="col-sm-3">Date d'emprunt</dt>
+    <dd class="col-sm-9">@Model.DateEmprunt.ToString("dd/MM/yyyy HH:mm")</dd>
+    <dt class="col-sm-3">Date limite</dt>
+    <dd class="col-sm-9">@Model.DateLimiteRetour.ToString("dd/MM/yyyy")</dd>
+    <dt class="col-sm-3">Date de retour</dt>
+    <dd class="col-sm-9">@(Model.DateRetour?.ToString("dd/MM/yyyy HH:mm") ?? "En cours")</dd>
+    <dt class="col-sm-3">Exemplaire</dt>
+    <dd class="col-sm-9">@(Model.ExemplaireId?.ToString() ?? "Non attribué")</dd></dl>
+
+<a asp-action="Index">Retour</a>

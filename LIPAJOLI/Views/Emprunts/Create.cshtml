@@ -1,7 +1,37 @@
 @model LIPAJOLI.ViewModels.CreateEmpruntViewModel
-@{ ViewData["Title"]="Nouvel emprunt"; var livres=(IEnumerable<LIPAJOLI.ViewModels.LivreViewModel>)ViewBag.Livres; var usagers=(IEnumerable<LIPAJOLI.ViewModels.UsagerViewModel>)ViewBag.Usagers; }
-<h1>Nouvel emprunt</h1><form asp-action="Create" method="post"><div asp-validation-summary="ModelOnly" class="text-danger"></div>
-<div class="mb-3"><label asp-for="NoAbonne" class="form-label">Usager</label><select asp-for="NoAbonne" class="form-select"><option value="">-- Choisir --</option>@foreach(var u in usagers){<option value="@u.NoAbonne">@u.Prenom @u.Nom (@u.NoAbonne) - Défaillances: @u.Defaillance</option>}</select></div>
-<div class="mb-3"><label asp-for="LivreId" class="form-label">Livre</label><select asp-for="LivreId" class="form-select"><option value="0">-- Choisir --</option>@foreach(var l in livres){<option value="@l.Id" disabled="@(l.Quantite<=0)">@l.Titre (@l.Quantite disponible)</option>}</select></div>
-<button class="btn btn-primary">Emprunter</button> <a asp-action="Index" class="btn btn-secondary">Annuler</a></form>
-@section Scripts { @{await Html.RenderPartialAsync("_ValidationScriptsPartial");} }
+@{ 
+    ViewData["Title"]="Nouvel emprunt"; 
+
+    var livres=(IEnumerable<LIPAJOLI.ViewModels.LivreViewModel>)ViewBag.Livres;
+
+    var usagers=(IEnumerable<LIPAJOLI.ViewModels.UsagerViewModel>)ViewBag.Usagers; 
+}
+<h1>Nouvel emprunt</h1>
+<form asp-action="Create" method="post"><div asp-validation-summary="ModelOnly" class="text-danger"></div>
+  <div class="mb-3"><label asp-for="NoAbonne" class="form-label">Usager</label><select asp-for="NoAbonne" class="form-select"><option value="">-- Choisir --</option>
+    @foreach(var u in usagers){
+        <option value="@u.NoAbonne">@u.Prenom @u.Nom (@u.NoAbonne) - Défaillances: @u.Defaillance</option>
+    }</select></div>
+
+  <div class="mb-3"><label asp-for="LivreId" class="form-label">Livre</label>
+
+    <select asp-for="LivreId" class="form-select"><option value="0">-- Choisir --</option>
+        @foreach(var l in livres)
+        {
+            <option value="@l.Id" disabled="@(l.Quantite<=0)">@l.Titre (@l.Quantite disponible)</option>
+        }
+     </select>
+   </div>
+ 
+       <button class="btn btn-primary">Emprunter</button>
+
+     <a asp-action="Index" class="btn btn-secondary">Annuler</a>
+
+
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    } 
+}
