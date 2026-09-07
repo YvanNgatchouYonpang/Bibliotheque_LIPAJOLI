@@ -1,0 +1,85 @@
+﻿@model LIPAJOLI.Models.Livre
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+@{
+    ViewData["Title"] = "Ajouter un Livre";
+    var categories = Configuration.GetSection("Bibliotheque:Categories").Get<List<string>>();
+    var auteurs = Configuration.GetSection("Bibliotheque:Auteurs").Get<List<string>>();
+}
+
+<h1>Ajouter un Livre</h1>
+
+<h4>Livre</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @* <div class="form-group">
+                <label asp-for="Code" class="control-label"></label>
+                <input asp-for="Code" class="form-control" />
+                <span asp-validation-for="Code" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="ISBN10" class="control-label"></label>
+                <input asp-for="ISBN10" class="form-control" />
+                <span asp-validation-for="ISBN10" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ISBN13" class="control-label"></label>
+                <input asp-for="ISBN13" class="form-control" />
+                <span asp-validation-for="ISBN13" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Titre" class="control-label"></label>
+                <input asp-for="Titre" class="form-control" />
+                <span asp-validation-for="Titre" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="Auteurs" class="control-label"></label>
+            </div>
+            <span asp-validation-for="Auteurs" class="text-danger"></span>
+            @foreach(var auteur in auteurs)
+            {
+                <div class="form-check">
+                    <input name="listeAuteurs" type="checkbox" value="@auteur" class="form-check-input" />
+                    <label  class="form-check-label">@auteur</label>
+                </div>
+            }
+            <div class="form-group">
+                <label asp-for="Categorie" class="control-label"></label>
+                <select asp-for="Categorie" class="form-control">
+                    <option value="">--- Sélectionner une catégorie ---</option>
+                    @foreach (var categorie in categories)
+                    {
+                        <option value="@categorie">@categorie</option>
+                    }
+                </select>
+                <span asp-validation-for="Categorie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantite" class="control-label"></label>
+                <input asp-for="Quantite" class="form-control" />
+                <span asp-validation-for="Quantite" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prix" class="control-label"></label>
+                <input asp-for="Prix" class="form-control" type="number"/>
+                <span asp-validation-for="Prix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Ajouter" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Retour a la liste</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

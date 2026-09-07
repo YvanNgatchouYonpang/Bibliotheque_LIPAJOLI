@@ -1,0 +1,153 @@
+﻿@model PaginatedList<LIPAJOLI.Models.Livre>
+
+@{
+    ViewData["Title"] = "Gestion des Livres";
+}
+
+<h1>Gestion des livres</h1>
+
+@if (TempData["Succes"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Succes"]
+    </div>
+}
+
+@if (TempData["Erreur"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Erreur"]
+    </div>
+}
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Ajouter un Livre</a>
+</p>
+
+<form asp-action="Index"
+      method="get"
+      class="mb-4">
+
+    <div class="row">
+
+        <div class="col-md-8">
+
+            <input type="text"
+                   name="recherche"
+                   value="@Context.Request.Query["recherche"]"
+                   class="form-control"
+                   placeholder="Rechercher par nom ou prénom" />
+
+        </div>
+
+        <div class="col-md-2">
+
+            <button type="submit"
+                    class="btn btn-primary w-100">
+                Rechercher
+            </button>
+
+        </div>
+
+        <div class="col-md-2">
+
+            <a asp-action="Index"
+               class="btn btn-secondary w-100">
+                Réinitialiser
+            </a>
+
+        </div>
+
+    </div>
+
+</form>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-secondary">
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-tri="@ViewData["ParamCodeTri"]">Code</a>
+                @* @Html.DisplayNameFor(model => model.Code) *@
+            </th>
+            <th>
+                ISBN10
+            </th>
+            <th>
+                ISBN13
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-tri="@ViewData["ParamTitreTri"]">Titre</a>
+                @* @Html.DisplayNameFor(model => model.Titre) *@
+            </th>
+            <th>
+                Auteurs
+            </th>
+            <th>
+                Categorie
+            </th>
+            <th>
+               Quantite
+            </th>
+            <th>
+                Prix
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var livre in Model) {
+        <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => livre.Code)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => livre.ISBN10)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => livre.ISBN13)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => livre.Titre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => livre.Auteurs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => livre.Categorie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => livre.Quantite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => livre.Prix)
+            </td>
+            <td>
+
+                    <a asp-action="Details" class="btn btn-info btn-sm" asp-route-id="@livre.Code">Consulter</a> |
+                    <a asp-action="Edit" class="btn btn-warning btn-sm" asp-route-id="@livre.Code">Modifier</a> |
+                    <a asp-action="Delete" class="btn btn-danger btn-sm" asp-route-id="@livre.Code">Supprimer</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-tri="@ViewData["CurrentSort"]"
+   asp-route-numeroPage="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-outline-secondary @prevDisabled">
+    Précedent
+</a>
+<a asp-action="Index"
+   asp-route-tri="@ViewData["CurrentSort"]"
+   asp-route-numeroPage="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-outline-secondary @nextDisabled">
+    Suivant
+</a>

@@ -1,0 +1,87 @@
+﻿@model LIPAJOLI.Models.Usager
+
+@{
+    ViewData["Title"] = "Supprimer un usager";
+}
+
+<h1>Supprimer un usager</h1>
+
+<hr />
+
+<div class="alert alert-danger">
+    <strong>Attention !</strong>
+    Vous êtes sur le point de supprimer cet usager.
+    Cette opération est irréversible.
+</div>
+
+<h4>Voulez-vous vraiment supprimer cet usager ?</h4>
+
+<hr />
+
+<dl class="row">
+
+    <dt class="col-sm-3">
+        N° d'abonné
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.NoAbonne
+    </dd>
+
+    <dt class="col-sm-3">
+        Nom
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Nom
+    </dd>
+
+    <dt class="col-sm-3">
+        Prénom
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Prenom
+    </dd>
+
+    <dt class="col-sm-3">
+        Statut
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Statut
+    </dd>
+
+    <dt class="col-sm-3">
+        Défaillances
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Defaillance
+    </dd>
+
+    <dt class="col-sm-3">
+        Courriel
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Email
+    </dd>
+
+</dl>
+
+<form asp-action="Delete" method="post">
+
+    <input type="hidden" asp-for="NoAbonne" />
+
+    <button type="submit"
+            class="btn btn-danger">
+        Oui, supprimer
+    </button>
+
+    <a asp-action="Index"
+       class="btn btn-secondary">
+        Annuler
+    </a>
+
+</form>

@@ -1,0 +1,87 @@
+﻿@model LIPAJOLI.Models.Livre
+
+@{
+    ViewData["Title"] = "Supprimer un livre";
+}
+
+<h1>Supprimer un livre</h1>
+
+<hr />
+
+<div class="alert alert-danger">
+    <strong>Attention !</strong>
+    Vous êtes sur le point de supprimer ce livre.
+    Cette opération est irréversible.
+</div>
+
+<h4>Voulez-vous vraiment supprimer ce livre ?</h4>
+
+<hr />
+
+<dl class="row">
+
+    <dt class="col-sm-3">
+        Code
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Code
+    </dd>
+
+    <dt class="col-sm-3">
+        Titre
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Titre
+    </dd>
+
+    <dt class="col-sm-3">
+        Auteurs
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Auteurs
+    </dd>
+
+    <dt class="col-sm-3">
+        Catégorie
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Categorie
+    </dd>
+
+    <dt class="col-sm-3">
+        Quantité
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Quantite
+    </dd>
+
+    <dt class="col-sm-3">
+        Prix
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Prix.ToString("C")
+    </dd>
+
+</dl>
+
+<form asp-action="Delete" method="post">
+
+    <input type="hidden" asp-for="Code" />
+
+    <button type="submit"
+            class="btn btn-danger">
+        Oui, supprimer
+    </button>
+
+    <a asp-action="Index"
+       class="btn btn-secondary">
+        Annuler
+    </a>
+
+</form>

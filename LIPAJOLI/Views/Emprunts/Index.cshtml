@@ -1,0 +1,9 @@
+@model IEnumerable<LIPAJOLI.ViewModels.EmpruntViewModel>
+@{ ViewData["Title"]="Emprunts"; }
+<h1>Gestion des emprunts</h1>
+@if (TempData["Error"] is not null) { <div class="alert alert-danger">@TempData["Error"]</div> }
+<p><a asp-action="Create" class="btn btn-primary">Nouvel emprunt</a></p>
+<table class="table table-striped">
+<thead><tr><th>Usager</th><th>Livre</th><th>Emprunté le</th><th>Limite</th><th>Retour</th><th>État</th><th></th></tr></thead>
+<tbody>@foreach(var e in Model){<tr><td>@e.Usager (@e.NoAbonne)</td><td>@e.Livre</td><td>@e.DateEmprunt.ToString("dd/MM/yyyy")</td><td>@e.DateLimiteRetour.ToString("dd/MM/yyyy")</td><td>@(e.DateRetour?.ToString("dd/MM/yyyy") ?? "-")</td><td>@(e.DateRetour is null ? "En cours":"Retourné")</td><td><a asp-action="Details" asp-route-id="@e.Id">Détails</a> @if(e.DateRetour is null){<form asp-action="Retour" asp-route-id="@e.Id" method="post" class="d-inline ms-2"><button class="btn btn-sm btn-success">Retourner</button></form>} <a asp-action="Delete" asp-route-id="@e.Id" class="ms-2">Supprimer</a></td></tr>}</tbody>
+</table>

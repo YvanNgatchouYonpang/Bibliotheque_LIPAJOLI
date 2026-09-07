@@ -1,0 +1,3 @@
+@model LIPAJOLI.ViewModels.EmpruntViewModel
+@{ViewData["Title"]="Supprimer un emprunt";}
+<h1>Supprimer</h1><div class="alert alert-warning">Un emprunt retourné ne peut pas être supprimé.</div><dl class="row"><dt class="col-sm-3">Usager</dt><dd class="col-sm-9">@Model.Usager</dd><dt class="col-sm-3">Livre</dt><dd class="col-sm-9">@Model.Livre</dd><dt class="col-sm-3">État</dt><dd class="col-sm-9">@(Model.DateRetour is null ? "En cours":"Retourné")</dd></dl><form asp-action="Delete" method="post"><input type="hidden" asp-for="Id"/><button class="btn btn-danger">Confirmer</button> <a asp-action="Index" class="btn btn-secondary">Annuler</a></form>
