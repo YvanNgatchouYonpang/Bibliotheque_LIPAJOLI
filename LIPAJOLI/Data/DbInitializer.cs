@@ -12,6 +12,8 @@ namespace LIPAJOLI.Data
 
             context.Database.EnsureCreated();
 
+            InitialiserExemplaires(context);
+
             // Si des livres existent déjà, on ne réinsère pas les données.
             if (context.Livres.Any())
                 {
@@ -198,6 +200,37 @@ namespace LIPAJOLI.Data
 
                 context.SaveChanges();
             }
+
+
+        private static void InitialiserExemplaires(ApplicationDbContext context)
+        {
+            // Vérifie combien d'exemplaires existent déjà
+            int nombreExemplaires = context.Exemplaire.Count();
+
+            // Si des exemplaires existent déjà, on ne les recrée pas
+            if (nombreExemplaires > 0)
+            {
+                return;
+            }
+
+            var livres = context.Livres.ToList();
+
+            foreach (var livre in livres)
+            {
+                for (int i = 1; i <= livre.Quantite; i++)
+                {
+                    context.Database.ExecuteSqlRaw(
+                        """
+                INSERT INTO Exemplaires (Etat, CodeLivre, LivreId)
+                VALUES ({0}, {1}, {2})
+                """,
+                        "Disponible",
+                        livre.Code,
+                        livre.Id);
+                }
+            }
+        }
+
     }
     
 }

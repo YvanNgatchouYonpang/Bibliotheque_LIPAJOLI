@@ -108,7 +108,12 @@ public class EmpruntApiService : IEmpruntApiService
 
         if (!response.IsSuccessStatusCode)
         {
-            return (false, body, null);
+
+            var message = body
+                .Replace("{\"message\":\"", "")
+                .Replace("\"}", "");
+
+            return (false, message, null);
         }
 
         var options = new System.Text.Json.JsonSerializerOptions();

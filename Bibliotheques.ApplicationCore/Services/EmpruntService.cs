@@ -72,6 +72,12 @@ public class EmpruntService : IEmpruntService
         var exemplaire =
             await _emprunts.GetAvailableExemplaireAsync(livreId);
 
+        if (exemplaire == null)
+        {
+            throw new InvalidOperationException(
+                "Aucun exemplaire disponible pour ce livre.");
+        }
+
         var emprunt = new Emprunt();
 
         emprunt.DateEmprunt = maintenant;
@@ -79,18 +85,11 @@ public class EmpruntService : IEmpruntService
             maintenant.AddDays(_nombreJoursEmprunt);
         emprunt.LivreId = livreId;
         emprunt.UsagerNoAbonne = noAbonne;
-
-        if (exemplaire != null)
-        {
-            emprunt.ExemplaireId = exemplaire.Id;
-        }
+        emprunt.ExemplaireId = exemplaire.Id;
 
         livre.Quantite--;
 
-        if (exemplaire != null)
-        {
-            exemplaire.Etat = "Emprunté";
-        }
+        exemplaire.Etat = "Emprunté";
 
         _emprunts.Add(emprunt);
 
