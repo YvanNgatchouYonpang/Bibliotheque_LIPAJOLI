@@ -104,11 +104,11 @@ public class EmpruntsController( IEmpruntService service,IUsagerRepository usage
         }
         catch (KeyNotFoundException ex)
         {
-            return NotFound(new { message = ex.Message });
+            return NotFound(ex.Message);
         }
         catch (InvalidOperationException ex)
         {
-            return Conflict(new { message = ex.Message });
+            return Conflict(ex.Message);
         }
     }
 }
