@@ -66,12 +66,18 @@ Les pratiques de sécurité réellement mises en œuvre dans le projet seront d�
 ## 🖥️ Aperçu
 
 🏠 Page d'accueil / interface principale
-
+![Gestion des livres](screenshots/acceuil.png)
 📚 Gestion des livres
+![Gestion des livres](screenshots/Livres.png)
 👤 Gestion des usagers
+![Gestion des usagers](screenshots/Usagers.png)
 📖 Gestion des emprunts
+
+![Gestion des emprunts](screenshots/Emprunts.png)
 🔄 Retour d'un livre / historique
-Des captures d'écran de l'application seront ajoutées afin de présenter les principales interfaces et fonctionnalités.
+
+![Retour d'un livre / historique](screenshots/Retour d'un livre et historique.png)
+
 
 ## ⚙️ Installation
 
