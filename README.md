@@ -66,16 +66,20 @@ Les pratiques de sécurité réellement mises en œuvre dans le projet seront d�
 ## 🖥️ Aperçu
 
 🏠 Page d'accueil / interface principale
-screes
+[](sreeshots/acceuil.png)
+
 📚 Gestion des livres
 ![Gestion des livres](screeshots/Livres.png)
+
 👤 Gestion des usagers
 ![Gestion des usagers](screeshots/Usagers.png)
+
 📖 Gestion des emprunts
 
 ![Gestion des emprunts](screeshots/Emprunts.png)
+
 🔄 Retour d'un livre / historique
-![Retour d'un livre / historique](screeshots/Retour d'un livre et historique.png)
+![](screeshots/Retour d'un livre et historique.png)
 
 
 ## ⚙️ Installation
