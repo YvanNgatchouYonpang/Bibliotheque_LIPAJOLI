@@ -66,7 +66,7 @@ Les pratiques de sécurité réellement mises en œuvre dans le projet seront d�
 ## 🖥️ Aperçu
 
 🏠 Page d'accueil / interface principale
-![Gestion des livres](sreeshots/acceuil.png)
+(sreeshots/acceuil.png)
 
 📚 Gestion des livres
 ![Gestion des livres](screeshots/Livres.png)
