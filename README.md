@@ -80,6 +80,10 @@ Les pratiques de sécurité réellement mises en œuvre dans le projet seront d�
 
 🔄 Retour d'un livre
 ![Gestion des emprunts](screeshots/Retour.png)
+![Gestion des emprunts](screeshots/Retour1.png)
+![Gestion des emprunts](screeshots/Retour2.png)
+![Gestion des emprunts](screeshots/Retour3.png)
+![Gestion des emprunts](screeshots/Retour4.png)
 
 
 ## ⚙️ Installation
