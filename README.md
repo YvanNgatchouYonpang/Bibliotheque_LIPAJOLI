@@ -1,4 +1,4 @@
-# 📚 LIPAJOLI
+# 📚Bibliotheque_LIPAJOLI
 
 > Application web de gestion de bibliothèque permettant de gérer les livres, les usagers et les emprunts.
 
