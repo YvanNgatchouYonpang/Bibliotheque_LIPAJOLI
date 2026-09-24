@@ -65,7 +65,7 @@ Les pratiques de sécurité réellement mises en œuvre dans le projet seront d�
 
 ## 🖥️ Aperçu
 
-🏠 Page d'accueil / interface principale
+🏠 Page d'accueil
 ![Gestion des emprunts](screenshots/acceuil.png)
 
 📚 Gestion des livres
@@ -78,7 +78,7 @@ Les pratiques de sécurité réellement mises en œuvre dans le projet seront d�
 
 ![Gestion des emprunts](screeshots/Emprunts.png)
 
-🔄 Retour d'un livre / historique
+🔄 Retour d'un livre
 ![Gestion des emprunts](screenshots/Retour.png)
 
 
